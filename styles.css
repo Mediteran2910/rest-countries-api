@@ -176,7 +176,6 @@ span{
     display: block;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
     background-color: white;
     width: 90%;
     border-radius: 10px;
