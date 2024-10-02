@@ -190,7 +190,8 @@ span{
     
 }  
 
-/* BUG IS IN THE BLOCK ABOVE ABOVE */
+/* BUG IS IN THE BLOCK ABOVECSS ABOVE */
+/* ako stavim height na auto, bez max heighta sve ce mi displayat ali mora bit 200px i da se scroola kroz njega */
 
 .search-output::-webkit-scrollbar{
     width: 10px;
