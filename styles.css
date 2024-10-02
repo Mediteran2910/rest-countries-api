@@ -188,7 +188,9 @@ span{
     scroll-behavior: smooth;
     box-sizing: border-box;
     
-}
+}  
+
+/* BUG IS IN THE BLOCK ABOVE ABOVE */
 
 .search-output::-webkit-scrollbar{
     width: 10px;
