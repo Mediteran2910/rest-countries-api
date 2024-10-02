@@ -1,0 +1,61 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+            <h1>Where in the world?</h1>
+            <button id="switch-mode"> <img src="images/brightness-contrast.svg" alt="dark-light mode icon" width, height="12.5px"> Dark Mode</button>
+    </header>
+            
+            <main>
+                <form action="" id="searching-bar">
+                    <img src="images/search-outline.svg" alt="searching icon for search regions" width, height="20px">
+                    <input type="text" placeholder="Search for the country...">
+                </form>
+                <!-- <div class="search-output">
+                    <a href="">Germany, Europe</a>
+                    <a href="">Croatia, Europe</a>
+                    <a href="">Tunis, Africa</a>
+                    <a href="">Afganistan, Asia</a>
+                </div> -->
+                <section>
+            <div id="region-filter">
+                <label for="region-select">Filter by region</label>
+                <img src="images/arrow-down.svg" alt="arrow icon for pointing to regions" width, height="10px">
+            </div>    
+            <ul>
+                <li id="africa">Africa</li>
+                <li id="america">America</li>
+                <li id="asia">Asia</li>
+                <li id="europe">Europe</li>
+                <li id="oceania">Oceania</li>
+            </ul>
+            </section>
+                
+                <!-- <div>
+                    <img id="image" src="" alt="">
+                    <h3 id="country-name"></h3>
+                    <p id="population">Population</p>
+                    <p id="region">Region</p>
+                    <p id="capital">Capital</p>
+                </div> -->
+            </main>
+        
+
+
+    <script src="allCountries.js"></script>
+    <script src="index.js"></script>
+    <script src="regionsSelect.js"></script>
+    
+    
+</body>
+</html>
