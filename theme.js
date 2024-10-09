@@ -1,5 +1,6 @@
 const switchModes = document.getElementById('switch-mode');
 const modeImg = document.getElementById('mode-vector');
+const modeText = document.querySelector('span')
 const searchImg = document.getElementById('search-vector');
 const regionImg = document.getElementById('region-vector'); 
 const backArrowImg = document.getElementById('back-arrow-img'); 
@@ -8,8 +9,8 @@ const backArrowImg = document.getElementById('back-arrow-img');
 function updateTheme(isDarkMode) {
     if (isDarkMode) {
         document.documentElement.classList.add('dark-mode');
+        modeText.textContent = 'Light Mode';
         modeImg.src = "images/sunIcon.svg";
-        switchModes.textContent = 'Light mode';
         if (searchImg) {
             searchImg.src = "images/search-light.svg";
         }
