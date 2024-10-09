@@ -1,6 +1,4 @@
-
-
-
+const countriesWrapper = document.querySelector('#countries-wrapper')
 
 const urlAllCountries = 'https://restcountries.com/v3.1/all?fields=name,population,continents,capital,flags' 
 // In the matter of better performance and faster loading, filtering API call only with values I need, instead of requesting all the data
@@ -33,7 +31,7 @@ const makeElemet = (data) => {
     const region = document.createElement('span');
     const capital = document.createElement('span');
 
-    section.append(div)
+    countriesWrapper.append(div)
         div.append(countryImg, h2, p1, p2, p3)
 
         h2.textContent = country.name.common;
@@ -72,6 +70,9 @@ const displayData = async () => {
     }   
 
 // putting everything in the same function and running it as soon as page open    
+
+
+
 
 
   displayData()

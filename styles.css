@@ -20,7 +20,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: hsl(0, 0%, 98%);
+    background-color: var(--body-background-color);
     margin: 0;
     
 }
@@ -31,7 +31,7 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
+    background-color: var(--light-background-color);
     margin-top: 0;
     box-shadow: 0px 5px 11px -7px rgba(153,153,153,1);
 
@@ -40,20 +40,28 @@ header {
 }
 
 h1 {
-   color: hsl(200, 15%, 8%)
+   color: var(--h1-color);
 }
 
 #switch-mode {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: var(--light-background-color);
     border: none;
+    color: var(--text-color);
     
+}
+
+
+
+#switch-mode:hover{
+    cursor: pointer;
 }
 
 main{
     width: 100%;
+   
     
 }
 
@@ -62,17 +70,21 @@ main{
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    align-self: center;
-    background-color: white;
+    background-color: var(--light-background-color);
     border-radius: 10px;
     margin-bottom: 15px;
-    box-shadow: 0px 0px 30px -7px rgba(153,153,153,1);
+    box-shadow: var(--searching-bar-box-shadow);
 }
 
 input {
     border: none;
     width: 100%;
     height: 100%;
+    background-color: var(--light-background-color);
+}
+
+::placeholder{
+    color: var(--text-color);
 }
 
 input:focus{
@@ -92,13 +104,13 @@ input:focus{
     align-items: center;
     justify-content: space-between;
     align-self: flex-start;
-    background-color: white;
+    background-color: var(--light-background-color);
     width: 45%;
     height: 20%;
     border-radius: 10px;
     padding: 0px 10px;
-    margin-left: 10px;
-    box-shadow: 0px 0px 30px -7px rgba(153,153,153,1);
+    margin-left: 20px;
+    box-shadow: var(--region-filter-box-shadow);
    
 }
 
@@ -107,25 +119,33 @@ input:focus{
     cursor: pointer;
 }
 
-section{
+#search-wrapper{
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 0;
+    position: relative;
+    margin-bottom: 15px;
 }
 
 ul {
-    align-self: flex-start;
+    
     margin: 0px 10px;
     width: 45%;
     border-radius: 10px;
-    background-color: white;
+    background-color: var(--light-background-color);
     padding: 0px 10px;
     text-align: left;
     list-style-type: none;
     display: none;
+    position: relative;
+    z-index: 10;
+    margin-bottom: -130px;
+    box-shadow: var(--ul-box-shadow);
+    align-self: flex-start;
+    margin-left: 20px;
 
 }
 
@@ -135,19 +155,36 @@ li{
     border-radius: 10px;
     margin: 10px 0px;
     margin-left: 5px;
+    color: var(--text-color);
 }
 
 li:hover{
     cursor: pointer;
-    color: aquamarine;
+    color: var(--hover-text-color)
+    
 }
 
 .country-list {
     width: 85%;
-    background-color: white;
+    background-color: var(--light-background-color);
     border-radius: 5px;
     padding-bottom: 20px;
-    box-shadow: 0px 0px 30px -7px rgba(153,153,153,1);
+    box-shadow: var(--country-list-box-shadow);
+    position: relative;
+    z-index: 1;
+    margin: 0px 10px 20px 10px;
+    transition: transform 0.25s ease-in ;
+}
+
+.country-list:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+   
+
+}
+
+h2{
+    color: var(--text-color);
 }
 
 .country-img {
@@ -155,6 +192,7 @@ li:hover{
     margin: 0px 0px 5px 0px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    height: 180px;
 }
 
 .country-name{
@@ -163,7 +201,7 @@ li:hover{
 }
 
 .country-description{
-
+    color: var(--text-color);
     font-weight: bold;
     margin-left: 17.5px;
 }
@@ -176,7 +214,7 @@ span{
     display: block;
     flex-direction: column;
     align-items: flex-start;
-    background-color: white;
+    background-color: var(--light-background-color);
     width: 90%;
     border-radius: 10px;
     margin-top: 0;
@@ -186,11 +224,13 @@ span{
     overflow-x: hidden;
     scroll-behavior: smooth;
     box-sizing: border-box;
+    position: relative;
+    z-index: 20;
+    margin-bottom: -150px;
+    box-shadow: var(--search-output-box-shadow);
     
 }  
 
-/* BUG IS IN THE BLOCK ABOVECSS ABOVE */
-/* ako stavim height na auto, bez max heighta sve ce mi displayat ali mora bit 200px i da se scroola kroz njega */
 
 .search-output::-webkit-scrollbar{
     width: 10px;
@@ -210,14 +250,239 @@ span{
 .search-links{
     text-decoration: none;
     width: 100%;
-    color: black;
+    color: var(--text-color);
     padding-top: 5px;
+
     
+}
+
+label{
+    color: var(--text-color);
 }
 
 .search-links:hover {
     cursor: pointer;
-    color: grey;
+    color: var(--hover-text-color);
+    box-shadow: -3px 22px 9px -14px rgba(15,15,15,1);
+    
+}
+
+#countries-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    position: relative;
+    flex-wrap: wrap;
+    
 }
 
 
+
+
+
+@media (min-width: 480px) {
+
+    .country-list {
+        width: 40%;
+    }
+
+   
+
+    .country-img {
+        width: 100%;
+        height: 130px;
+    }
+
+    #region-filter{
+        width: 45%;
+        height: 20%;
+       
+        margin-left: 30px;
+     
+    }
+
+    ul {
+        margin-left: 30px;
+    
+    }
+  
+
+}
+
+@media (min-width: 660px) {
+
+    .country-img {
+        width: 100%;
+        margin: 0px 0px 5px 0px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        height: 180px;
+    }
+
+    .country-list{
+        width: 45%;
+    }
+
+    #region-filter{
+       
+       
+       
+        margin-left: 35px;
+        
+    }
+
+}
+
+@media (min-width: 800px) {
+
+    .country-list {
+        width: 30%;
+      
+    }
+
+    #search-wrapper{
+        width: 95%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        gap: 5px 10px;
+        margin: 0 auto;
+        position: static;
+        
+    }
+
+    #countries-wrapper {
+        margin-top: 30px;
+    }
+
+    #region-filter{
+        grid-column: 8 / end ;
+        grid-row: 1;
+        display: flex;
+      
+        height: 75%;
+        width: 100%;
+        border-radius: 10px;
+        padding: 0px;
+        margin-left: 0px;
+      
+        position: static;
+       
+    }
+
+
+
+    #searching-bar{
+        grid-column: 1 / 6;
+        width: 100%;
+        height: 75%;
+       
+     
+       
+        margin-bottom: 5px;
+        margin-left: 0px;
+      
+    }
+
+
+    .search-output {
+        grid-column: 1 / 6;
+        display: block;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        border-radius: 10px;
+        margin-top: 0;
+        height: auto;
+        max-height: 200px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        box-sizing: border-box;
+        margin-bottom: -150px;
+        margin-left: 0px;
+        
+    }  
+
+    ul{
+            grid-column: 8 / -1;
+            grid-row: 2;
+            margin: 0;
+            width: 100%;
+            border-radius: 10px;
+            text-align: left;
+            list-style-type: none;
+           
+            position: static;
+            z-index: 10;
+            margin-bottom: -130px; 
+            padding-right: 2.5px;
+            
+    }
+
+    main{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+
+}
+
+@media (min-width: 1010px) {
+
+    .country-list {
+        width: 22%;
+       
+    }
+
+    .country-img {
+       
+        height: 190px;
+    }
+
+}
+
+@media (min-width: 1350px) {
+    .country-img {
+      
+        height: 235px;
+    }
+}
+
+
+/* //////// */
+
+ :root {
+    --body-background-color: hsl(0, 0%, 98%);
+    --light-background-color: white;
+    --header-box-shadow: 0px 5px 11px -7px rgba(153,153,153,1);
+    --h1-color: hsl(200, 15%, 8%);
+    --searching-bar-box-shadow: 0px 0px 30px -7px rgba(153,153,153,1);
+    --region-filter-box-shadow: 0px 0px 30px -7px rgba(153,153,153,1);
+    --ul-box-shadow: 0px 9px 9px -6px rgba(115,115,115,1);
+    --country-list-box-shadow: 0px 0px 30px -7px rgba(153,153,153,1);
+    --text-color: black;
+    --search-output-box-shadow: 0px 9px 9px -6px rgba(115,115,115,1);
+    --hover-text-color: rgb(88, 88, 88);
+ }
+
+ :root.dark-mode {
+    --body-background-color: hsl(200, 15%, 8%);
+    --light-background-color: hsl(209, 23%, 22%);
+    --header-box-shadow: 0px 5px 11px -7px rgba(0, 0, 0, 0.7);
+    --h1-color: hsl(0, 0%, 98%);
+    --searching-bar-box-shadow: 0px 0px 30px -7px rgba(0, 0, 0, 0.7);
+    --region-filter-box-shadow: 0px 0px 30px -7px rgba(0, 0, 0, 0.7);
+    --ul-box-shadow: 0px 9px 9px -6px rgba(0, 0, 0, 0.7);
+    --country-list-box-shadow: 0px 0px 30px -7px rgba(0, 0, 0, 0.7);
+    --text-color: hsl(0, 0%, 98%);
+    --search-output-box-shadow: 0px 9px 9px -6px rgba(0, 0, 0, 0.7);
+    --hover-text-color: rgb(193, 193, 193);
+}

@@ -1,3 +1,12 @@
+const regionFilter = document.getElementById('region-filter')
+const regionsUl = document.querySelector('ul')
+const regionsLi = document.querySelectorAll('li')
+const africa = document.getElementById('africa')
+const america = document.getElementById('america')
+const asia = document.getElementById('asia')
+const europe = document.getElementById('europe')
+const oceania = document.getElementById('oceania')
+
 // const getDataByName = async (urlName) => {
 //     try {
 //         const response = await axios.get(urlName);
@@ -35,7 +44,7 @@
             regionsUl.style.display = 'none'
             console.log('selections of regions is hidden');
         } else {
-            regionsUl.style.display = 'block'
+            regionsUl.style.display = 'grid'
             console.log('selection of regions is displayed')
         }
            isVisible = !isVisible

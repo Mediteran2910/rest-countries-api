@@ -1,22 +1,12 @@
-// const img = document.getElementById("image")
-// const countryName = document.getElementById("country-name")
-// const population = document.getElementById("population")
-// const region = document.getElementById("region")
-// const capital = document.getElementById("capital")
+
 const section = document.querySelector('section')
 const userInput = document.querySelector("input")
 const form = document.querySelector('form')
-const regionFilter = document.getElementById('region-filter')
-const regionsUl = document.querySelector('ul')
-const regionsLi = document.querySelectorAll('li')
-const africa = document.getElementById('africa')
-const america = document.getElementById('america')
-const asia = document.getElementById('asia')
-const europe = document.getElementById('europe')
-const oceania = document.getElementById('oceania')
+
 const searchBar = document.getElementById('searching-bar')
 const filterLabel = document.querySelector('label')
 const body = document.querySelector('body')
+
 
 
 

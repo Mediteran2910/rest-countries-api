@@ -8,8 +8,9 @@ const currencies = document.getElementById('currencies')
 const languages = document.getElementById('languages')
 const h2 = document.querySelector('h2')
 const h3 = document.querySelector('h3')
-const img = document.getElementById('image')
+const img = document.getElementById('country-flag')
 const backArrow = document.getElementById('back-arrow')
+
 
 
 const params = new URLSearchParams(window.location.search); //using build in js object to extract the string, in this case name, from another file and targeting that string with code in parenteses 
@@ -126,5 +127,7 @@ const isObject = (value) => {
         window.location.href = "index.html"
     })
 
+ 
+    
 
 countriesDetails()
