@@ -50,9 +50,17 @@ h1 {
     justify-content: center;
     background-color: var(--light-background-color);
     border: none;
-    color: var(--text-color);
+    color: var(--text-color);  
+    transition: transform ease 0.2s;
     
 }
+
+#switch-mode:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+    
+
 
 #switch-mode img{
     margin-right: 0px;
