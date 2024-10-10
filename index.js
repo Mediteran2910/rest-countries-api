@@ -2,31 +2,11 @@
 const section = document.querySelector('section')
 const userInput = document.querySelector("input")
 const form = document.querySelector('form')
-
 const searchBar = document.getElementById('searching-bar')
 const filterLabel = document.querySelector('label')
 const body = document.querySelector('body')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // DISPLAY BY REGIONS 
 
     const urlSearchBar = 'https://restcountries.com/v3.1/all?fields=name,region'
 
@@ -55,7 +35,7 @@ const body = document.querySelector('body')
     
     console.log(searchBarData.length, "Total countries fetched");
     console.log(data.length, "Total countries from API");
-console.log(searchBarData.length, "Total countries after filtering");
+    console.log(searchBarData.length, "Total countries after filtering");
     console.log(searchBarData, "I'm search bar object")
     return searchBarData
 
@@ -72,20 +52,22 @@ const initilaizeObject = async() => {
 initilaizeObject(); // whit this i make sure that I save data on page loading
 
 
-// function bellow is the input listener, he tracks every click of the user 
-// userInput.addEventListener('input', (e) => {
-//     const userValue = e.target.value.toLowerCase();
-//     console.log(userValue);
-    
-
-   
-// })
-
 let clicker = 0;
 const searchResultsDiv = document.createElement('div');
 searchBar.insertAdjacentElement('afterend', searchResultsDiv);
 searchResultsDiv.classList = "search-output";
 searchResultsDiv.style.display = 'none'
+
+const changeHeight = (arr) => {
+    if ( arr.length <= 3 ) {
+        searchResultsDiv.style.marginBottom = '-100px'
+    } 
+    else if (arr.length <= 1){
+        searchResultsDiv.style.marginBottom = '-40px'
+        searchResultsDiv.style.marginTop = '-200px'
+
+    }
+}
 
 searchBar.addEventListener('click', () => {
     clicker += 1;
@@ -98,7 +80,7 @@ searchBar.addEventListener('click', () => {
 
         
 
-        getAll(searchResultsDiv) 
+        CountriesList(searchResultsDiv) 
 
       
         
@@ -112,17 +94,19 @@ searchBar.addEventListener('click', () => {
 
 let searchResultLinks;
 
- const getAll = (searchResultsDiv) => {
-
-    searchResultsDiv.innerHTML = '';
-
-    searchBarData.forEach((item) => {
+const makeAnchorsElements = (item) => {
     searchResultLinks = document.createElement('a');
     searchResultsDiv.append(searchResultLinks);
     searchResultLinks.classList = "search-links"
     searchResultLinks.textContent = `${item.commonName}, ${item.region}`
     searchResultLinks.id = item.commonName
     searchResultLinks.href = `details.html?name=${item.commonName}`
+}
+
+ const CountriesList = () => {
+    searchBarData.forEach((item) => {
+        makeAnchorsElements(item);
+   
 
     
 }
@@ -130,65 +114,37 @@ let searchResultLinks;
 
 
 
-// searchResultLinks.addEventListener('click', () => {
-//         click += 1
-//         console.log('its clicked')
-//     }) 
-
-
-
-
-
-   
-
-
-
-
-// const searchElemet = (searchResultsDiv) => {
-//     const searchResultLinks = document.createElement('a');
-//     searchResultsDiv.append(searchResultLinks);
-//     searchResultLinks.classList = "search-links"
-
-//     return searchResultLinks
+userInput.addEventListener('input', (event) => {
+    const userSearch = event.target.value.toLowerCase();
     
+    const filteredResults = searchBarData.filter(country => {
+        const hasCommonName = typeof country.commonName === 'string' && country.commonName.toLowerCase().startsWith(userSearch);
+        const hasOfficialName = typeof country.officialName === 'string' && country.officialName.toLowerCase().startsWith(userSearch);
+
+        return hasCommonName || hasOfficialName; // Filter by either common or official name
+    });
+
+    console.log(filteredResults)
+    searchResultsDiv.innerHTML = '';
+    changeHeight(filteredResults)
 
 
-// }
+    if (filteredResults.length === 0){
+        searchResultLinks = document.createElement('p');
+        searchResultsDiv.append(searchResultLinks);
+        searchResultLinks.textContent = 'Nothing was found'
 
 
-// const matchSearch = (userValue, searchResultLinks) => {
-   
-//     searchElemet(searchResultLinks); 
-//     searchBarData.filter((item) => {
-//     if (item.commonName.toLowerCase().startsWith(userValue) || 
-//         item.officialName.toLowerCase().startsWith(userValue)) 
-//     { 
+    }else{
+         filteredResults.forEach((item) => {
+            makeAnchorsElements(item)
+            
+        });
+}
+    })
 
-//         searchResultLinks.innerHTML = item.commonName
-//         console.log(item.commonName, item.region)
+         
 
-//     } 
-    
-// })}
-
-// const divOfSearching = (searchResultLinks) => {
-//     const searchResultsDiv = document.createElement('div');
-//     searchBar.insertAdjacentElement('afterend', searchResultsDiv);
-//     searchResultsDiv.classList = "search-output"
-
-//     return searchResultsDiv
-// }
-
-// const searchBarElements = (item, searchResultsDiv) => {
-
-
-// const searchResultLinks = document.createElement('a');
-// searchResultsDiv.append(searchResultLinks);
-// searchResultLinks.classList = "search-links"
-// searchResultLinks.textContent = item.commonName
-
-
-//   } 
 
 
 

@@ -21,7 +21,7 @@ const getDataAll = async () => {
 const makeElemet = (data) => {
 
     for(let country of data) { // looping over the data and for each object making a div with other HTML elements inside
-    const div = document.createElement('div');
+    const countryAnchor = document.createElement('a');
     const h2 = document.createElement('h2');
     const p1 = document.createElement('p');
     const p2 = document.createElement('p');
@@ -31,8 +31,10 @@ const makeElemet = (data) => {
     const region = document.createElement('span');
     const capital = document.createElement('span');
 
-    countriesWrapper.append(div)
-        div.append(countryImg, h2, p1, p2, p3)
+    countriesWrapper.append(countryAnchor)
+        countryAnchor.append(countryImg, h2, p1, p2, p3)
+
+        countryAnchor.href = `details.html?name=${country.name.common}` 
 
         h2.textContent = country.name.common;
 
@@ -45,13 +47,13 @@ const makeElemet = (data) => {
         p3.textContent = "Capital:";
         p3.append(capital)
 
-        countryImg.src = country.flags.png || country.flags.svg; // checking if there is no png
+        countryImg.src = country.flags.png || country.flags.svg; // if there is no png display svg
         countryImg.alt = country.flags.alt;
         population.textContent = country.population
         region.textContent = country.continents
         capital.textContent = country.capital 
 
-        div.classList = "country-list";
+        countryAnchor.classList = "country-list";
         countryImg.classList = "country-img";
         h2.classList = "country-name";
         
@@ -71,8 +73,5 @@ const displayData = async () => {
 
 // putting everything in the same function and running it as soon as page open    
 
+displayData()
 
-
-
-
-  displayData()

@@ -10,7 +10,7 @@ function updateTheme(isDarkMode) {
     if (isDarkMode) {
         document.documentElement.classList.add('dark-mode');
         modeText.textContent = 'Light Mode';
-        modeImg.src = "images/sunIcon.svg"; // Sun icon for dark mode
+        modeImg.src = "images/sunIcon.svg"; 
         if (searchImg) {
             searchImg.src = "images/search-light.svg";
         }
@@ -23,8 +23,8 @@ function updateTheme(isDarkMode) {
         localStorage.setItem('theme', 'dark');
     } else {
         document.documentElement.classList.remove('dark-mode');
-        modeImg.src = "images/iconMoon.svg"; // Moon icon for light mode
-        modeText.textContent = 'Dark Mode'; // Set the button text back to 'Dark Mode'
+        modeImg.src = "images/iconMoon.svg"; 
+        modeText.textContent = 'Dark Mode'; 
         if (searchImg) {
             searchImg.src = "images/search-dark.svg";
         }

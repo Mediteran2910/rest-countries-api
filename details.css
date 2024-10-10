@@ -59,6 +59,10 @@ h1 {
     transform: scale(1.05);
 }
 
+#switch-mode img{
+    margin-right: 0px;
+}
+
 .container-details {
 
     width: 100%;
@@ -103,9 +107,14 @@ h1 {
 
 }
 
+#image-wrapper {
+    align-self: center;
+}
+
 img{
     background-color: var(--light-background-color);
     box-shadow: 0px 0px 30px -7px rgba(153,153,153,1);
+    
 }
 
 h2{

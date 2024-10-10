@@ -45,8 +45,8 @@ data.forEach((item) => {
     subRegion.textContent = item.subregion;
     capital.textContent = item.capital;
     domain.textContent = item.tld;
-    currencies.textContent =extractValues(item.currencies); //i will explain extract values bellow
-    languages.textContent =extractValues(item.languages);
+    currencies.textContent = extractValues(item.currencies); //i will explain extract values bellow
+    languages.textContent = extractValues(item.languages);
 
     createBorders(item); // calling function to create anchors links for borders
  
