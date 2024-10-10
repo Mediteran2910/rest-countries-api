@@ -13,24 +13,23 @@ const body = document.querySelector('body')
     const urlDetails = 'https://restcountries.com/v3.1/name/{name}'
 
     let searchBarData = []; 
-    //declaring the data array of objects globaly, because i dont want to make an API call everytime when user types
+    //declaring the data array of objects globaly, because i dont want to make an API call everytime on user type 
 
    
     const getDataNamesOnly  = async() => {
         const response = await axios.get(urlSearchBar);
         const data = response.data;
         
-        searchBarData = data.map((element) => {
+        searchBarData = data.map((element) => {   //iterating over data 
             if(element.name || element.region) 
                 return {
-                    commonName: element.name.common || "Unknown",
+                    commonName: element.name.common || "Unknown",  
                     officialName: element.name.official || "Unknown",
                     region: element.region
                 }
                 return null;
             
     }).filter((item) => item !== null)
-
 
     
     console.log(searchBarData.length, "Total countries fetched");
@@ -52,11 +51,12 @@ const initilaizeObject = async() => {
 initilaizeObject(); // whit this i make sure that I save data on page loading
 
 
-let clicker = 0;
+
 const searchResultsDiv = document.createElement('div');
 searchBar.insertAdjacentElement('afterend', searchResultsDiv);
 searchResultsDiv.classList = "search-output";
 searchResultsDiv.style.display = 'none'
+//I NEED TO CHECK TOMORROW WHY I MAKE THIS OUTSIDE OF ANY FUNCTION
 
 const changeHeight = (arr) => {
     if ( arr.length <= 3 ) {
@@ -67,8 +67,10 @@ const changeHeight = (arr) => {
         searchResultsDiv.style.marginTop = '-200px'
 
     }
-}
+} 
+// in the function above im trying to fix bug of overlaping elements, but unsucesfull, for now
 
+let clicker = 0;
 searchBar.addEventListener('click', () => {
     clicker += 1;
   
@@ -76,21 +78,16 @@ searchBar.addEventListener('click', () => {
     if(clicker === 1) {
         console.log(clicker, "numbers of clicks")
         searchResultsDiv.style.display = 'flex'
-       
-
         
-
         CountriesList(searchResultsDiv) 
 
-      
-        
-        
     } else {
         console.log(clicker)
         searchResultsDiv.style.display = 'none'
         clicker = 0;
     }
 })
+// function which counts clicks to toggle display of the div
 
 let searchResultLinks;
 
@@ -101,43 +98,46 @@ const makeAnchorsElements = (item) => {
     searchResultLinks.textContent = `${item.commonName}, ${item.region}`
     searchResultLinks.id = item.commonName
     searchResultLinks.href = `details.html?name=${item.commonName}`
-}
+} // reusable function for displaying results of searching
+
+
 
  const CountriesList = () => {
     searchBarData.forEach((item) => {
-        makeAnchorsElements(item);
-   
-
-    
+        makeAnchorsElements(item);   
 }
-)}
+)} // displaying scrolable list of all countries
 
 
 
 userInput.addEventListener('input', (event) => {
-    const userSearch = event.target.value.toLowerCase();
+    const userSearch = event.target.value.toLowerCase(); //tracking every value of user input 
     
     const filteredResults = searchBarData.filter(country => {
         const hasCommonName = typeof country.commonName === 'string' && country.commonName.toLowerCase().startsWith(userSearch);
-        const hasOfficialName = typeof country.officialName === 'string' && country.officialName.toLowerCase().startsWith(userSearch);
+        const hasOfficialName = typeof country.officialName === 'string' && country.officialName.toLowerCase().startsWith(userSearch); // checking if the data from arr is string and making it lower cased if it is
 
         return hasCommonName || hasOfficialName; // Filter by either common or official name
-    });
+    }); 
+    
 
     console.log(filteredResults)
-    searchResultsDiv.innerHTML = '';
-    changeHeight(filteredResults)
+
+    searchResultsDiv.innerHTML = ''; //clearing the div of results after every change of input value, because of repetition 
+    changeHeight(filteredResults) // just calling the function to change margins
 
 
     if (filteredResults.length === 0){
         searchResultLinks = document.createElement('p');
         searchResultsDiv.append(searchResultLinks);
         searchResultLinks.textContent = 'Nothing was found'
+        // handaling the case if there is no results to show
 
 
     }else{
          filteredResults.forEach((item) => {
             makeAnchorsElements(item)
+            // showing the results
             
         });
 }
