@@ -7,10 +7,6 @@ const filterLabel = document.querySelector('label')
 const body = document.querySelector('body')
 
 
-
-
-
-
     const urlSearchBar = 'https://restcountries.com/v3.1/all?fields=name,region'
 
     const urlDetails = 'https://restcountries.com/v3.1/name/{name}'
@@ -59,7 +55,7 @@ const searchResultsDiv = document.createElement('div');
 searchBar.insertAdjacentElement('afterend', searchResultsDiv);
 searchResultsDiv.classList = "search-output";
 searchResultsDiv.style.display = 'none'
-//I NEED TO CHECK TOMORROW WHY I MAKE THIS OUTSIDE OF ANY FUNCTION
+
 
 const changeHeight = (arr) => {
     const viewportWidth = document.documentElement.clientWidth;
@@ -86,7 +82,7 @@ const changeHeight = (arr) => {
     }
 }
 }
-// in the function above im trying to fix bug of overlaping elements, but unsucesfull, for now
+// in the function above im fix bug of overlaping elements while searching by typing
 
 let clicker = 0;
 searchBar.addEventListener('click', () => {
