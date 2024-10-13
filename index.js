@@ -8,6 +8,9 @@ const body = document.querySelector('body')
 
 
 
+
+
+
     const urlSearchBar = 'https://restcountries.com/v3.1/all?fields=name,region'
 
     const urlDetails = 'https://restcountries.com/v3.1/name/{name}'
@@ -59,31 +62,50 @@ searchResultsDiv.style.display = 'none'
 //I NEED TO CHECK TOMORROW WHY I MAKE THIS OUTSIDE OF ANY FUNCTION
 
 const changeHeight = (arr) => {
-    if ( arr.length <= 3 ) {
-        searchResultsDiv.style.marginBottom = '-100px'
-    } 
-    else if (arr.length <= 1){
-        searchResultsDiv.style.marginBottom = '-40px'
-        searchResultsDiv.style.marginTop = '-200px'
-
+    const viewportWidth = document.documentElement.clientWidth;
+    if(viewportWidth > 800){
+        if(arr.length < 2 || arr.length === 0) {
+            searchResultsDiv.classList.remove('search-output-ThreeResultWide', 'search-output-AllResultWide');
+            searchResultsDiv.classList.add('search-output-OneResultWide')
+        } 
+        else if(arr.length < 4) {
+           
+            searchResultsDiv.classList.add('search-output-ThreeResultWide')
+        }
+        else{
+            searchResultsDiv.classList.remove('search-output-ThreeResultWide', 'search-output-OneResultWide');
+           
+        }
+    
+    
+} else if(viewportWidth < 800){
+    if(arr.length < 2 || arr.length === 0) {
+        countriesWrapper.style.marginTop = '55px'
+    } else {
+        countriesWrapper.style.marginTop = '0px'
     }
-} 
+}
+}
 // in the function above im trying to fix bug of overlaping elements, but unsucesfull, for now
 
 let clicker = 0;
 searchBar.addEventListener('click', () => {
+    const viewportWidth = document.documentElement.clientWidth;
     clicker += 1;
-  
+    
     
     if(clicker === 1) {
         console.log(clicker, "numbers of clicks")
         searchResultsDiv.style.display = 'flex'
-        
         CountriesList(searchResultsDiv) 
+        if(viewportWidth < 800) {
+            regionFilter.style.opacity = '0'
+        }
 
     } else {
         console.log(clicker)
         searchResultsDiv.style.display = 'none'
+        regionFilter.style.opacity = "1"
         clicker = 0;
     }
 })
@@ -116,18 +138,22 @@ userInput.addEventListener('input', (event) => {
     const filteredResults = searchBarData.filter(country => {
         const hasCommonName = typeof country.commonName === 'string' && country.commonName.toLowerCase().startsWith(userSearch);
         const hasOfficialName = typeof country.officialName === 'string' && country.officialName.toLowerCase().startsWith(userSearch); // checking if the data from arr is string and making it lower cased if it is
-
+        
         return hasCommonName || hasOfficialName; // Filter by either common or official name
     }); 
     
 
     console.log(filteredResults)
-
-    searchResultsDiv.innerHTML = ''; //clearing the div of results after every change of input value, because of repetition 
+    console.log(filteredResults.length)
+    console.log( searchResultsDiv.style.marginTop)
     changeHeight(filteredResults) // just calling the function to change margins
+    
+    searchResultsDiv.innerHTML = ''; //clearing the div of results after every change of input value, because of repetition 
+    
 
 
     if (filteredResults.length === 0){
+        
         searchResultLinks = document.createElement('p');
         searchResultsDiv.append(searchResultLinks);
         searchResultLinks.textContent = 'Nothing was found'
@@ -136,6 +162,7 @@ userInput.addEventListener('input', (event) => {
 
     }else{
          filteredResults.forEach((item) => {
+            
             makeAnchorsElements(item)
             // showing the results
             

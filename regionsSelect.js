@@ -7,42 +7,13 @@ const asia = document.getElementById('asia')
 const europe = document.getElementById('europe')
 const oceania = document.getElementById('oceania')
 
-// const getDataByName = async (urlName) => {
-//     try {
-//         const response = await axios.get(urlName);
-//         const data = response.data;
-//         console.log(data, 'ja san data');
-//         return data;
-//     } catch (error) {
-//         console.error('API request failed:', error.response ? error.response.data : error.message);
-//     }
-// }
-
-// const displayDataName = async (urlName) => {
-//     const data = await getDataByName(urlName);
-//     makeElemet(data);
-// }
-
-// form.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     const names = userInput.value;
-//     const urlName = `https://restcountries.com/v3.1/name/${names}`;
-    
-//     section.innerHTML = '';
-
-//     displayDataName(urlName);
-// });
-
-// DISPLAY PO IMENU
-
-
 
     let isVisible = true; // variable for tracking is the select div visible
 
     regionFilter.addEventListener('click', (e) => {  // adding event listener fot displayin the regions manually, because working with html select element is PAIN
         if(!isVisible) {
             regionsUl.style.display = 'none'
-            console.log('selections of regions is hidden');
+            console.log('selections of regions is hidden'); 
         } else {
             regionsUl.style.display = 'grid'
             console.log('selection of regions is displayed')
