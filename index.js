@@ -1,4 +1,3 @@
-
 const section = document.querySelector('section')
 const userInput = document.querySelector("input")
 const form = document.querySelector('form')
@@ -168,7 +167,7 @@ userInput.addEventListener('input', (event) => {
 
          
 
-
+//
 
 
  
