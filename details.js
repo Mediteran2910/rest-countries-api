@@ -73,6 +73,7 @@ const createBorders = (item)=> {
         let borderCountries = document.createElement('a')
         bordersContainer.append(borderCountries);
         borderCountries.textContent = border
+        borderCountries.setAttribute('tabIndex', '0')
         bordersDetails(borderCountries, border)
        
         
@@ -87,12 +88,7 @@ const createBorders = (item)=> {
 }
 }
 
-const bordersDetails = (borderCountries, border) => { 
-    
-    borderCountries.addEventListener('click', async() => {
-
-    
-
+const fetchData = async(border) => {
     const urlBordersDetails = `https://restcountries.com/v3.1/alpha/${border}` //making an api call using the country code(in this case border)
     console.log(border)
     const response = await axios.get(urlBordersDetails)
@@ -100,7 +96,19 @@ const bordersDetails = (borderCountries, border) => {
     console.log(data)
     displayData(data) // displaying the new data on every click on the border link, with corresponding data of the border
     console.log(border)
-})
+}
+
+const bordersDetails = (borderCountries, border) => { 
+    
+   borderCountries.addEventListener('click', () => fetchData(border));
+
+   borderCountries.addEventListener('keydown', (e) => {
+       if( e.key === 'Enter' || e.key === ' ' ){
+        fetchData(border);
+       }
+   })
+
+
 }
 
 

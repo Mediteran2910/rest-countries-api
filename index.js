@@ -4,6 +4,7 @@ const form = document.querySelector('form')
 const searchBar = document.getElementById('searching-bar')
 const filterLabel = document.querySelector('label')
 const body = document.querySelector('body')
+const viewportWidth = document.documentElement.clientWidth;
 
 
     const urlSearchBar = 'https://restcountries.com/v3.1/all?fields=name,region'
@@ -81,11 +82,11 @@ const changeHeight = (arr) => {
     }
 }
 }
-// in the function above im fix bug of overlaping elements while searching by typing
+// in the function above im fixing bug of overlaping elements while typing in search bar
 
 let clicker = 0;
 searchBar.addEventListener('click', () => {
-    const viewportWidth = document.documentElement.clientWidth;
+    
     clicker += 1;
     
     
@@ -93,7 +94,7 @@ searchBar.addEventListener('click', () => {
         console.log(clicker, "numbers of clicks")
         searchResultsDiv.style.display = 'flex'
         CountriesList(searchResultsDiv) 
-        if(viewportWidth < 800) {
+        if(viewportWidth < 800) { // for smaller screens, hiding regionFilter because of aesthetic
             regionFilter.style.opacity = '0'
         }
 
@@ -125,10 +126,27 @@ const makeAnchorsElements = (item) => {
 }
 )} // displaying scrolable list of all countries
 
+function debounce(func, delay) {
+    let timer;
+    return function(...args) {
+        clearTimeout(timer);
+         timer = setTimeout(() => func.apply(this, args), delay);
+    }
+
+}
+//using debouncing tehnique, maybe I didn't need it in this case, but hopefully it's a good practice
 
 
-userInput.addEventListener('input', (event) => {
+
+userInput.addEventListener('input', debounce((event) => {
+    searchResultsDiv.style.display = 'flex'
+    if(viewportWidth < 800) { // for smaller screens, hiding regionFilter because of aesthetic
+        regionFilter.style.opacity = '0'
+    } else{
+        regionFilter.style.opacity = '1'
+    }
     const userSearch = event.target.value.toLowerCase(); //tracking every value of user input 
+    
     
     const filteredResults = searchBarData.filter(country => {
         const hasCommonName = typeof country.commonName === 'string' && country.commonName.toLowerCase().startsWith(userSearch);
@@ -140,11 +158,10 @@ userInput.addEventListener('input', (event) => {
 
     console.log(filteredResults)
     console.log(filteredResults.length)
-    console.log( searchResultsDiv.style.marginTop)
     changeHeight(filteredResults) // just calling the function to change margins
     
     searchResultsDiv.innerHTML = ''; //clearing the div of results after every change of input value, because of repetition 
-    
+   
 
 
     if (filteredResults.length === 0){
@@ -157,13 +174,12 @@ userInput.addEventListener('input', (event) => {
 
     }else{
          filteredResults.forEach((item) => {
-            
             makeAnchorsElements(item)
             // showing the results
             
         });
 }
-    })
+    }, 200))
 
          
 

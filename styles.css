@@ -5,6 +5,7 @@
     margin: 10px;
     
     
+    
 } 
 
  html {
@@ -95,6 +96,7 @@ input {
     width: 100%;
     height: 100%;
     background-color: var(--light-background-color);
+    color: var(--text-color);
 }
 
 ::placeholder{
@@ -126,6 +128,11 @@ input:focus{
     margin-left: 20px;
     box-shadow: var(--region-filter-box-shadow);
    
+}
+
+
+#region-filter:focus-visible {
+    outline: var(--focus-keyboard);  
 }
 
 #region-filter, label:hover{
@@ -176,6 +183,11 @@ li:hover{
     cursor: pointer;
     color: var(--hover-text-color)
     
+}
+
+
+li:focus-visible {
+    outline: var(--focus-keyboard); 
 }
 
 .country-list {
@@ -245,6 +257,10 @@ span{
     
 }  
 
+.search-output p{
+    color: var(--text-color);
+}
+/* targeting the p element when there is nothing found */
 
 .search-output::-webkit-scrollbar{
     width: 10px;
@@ -494,6 +510,7 @@ label{
     --text-color: black;
     --search-output-box-shadow: 0px 9px 9px -6px rgba(115,115,115,1);
     --hover-text-color: rgb(88, 88, 88);
+    --focus-keyboard: 2px solid rgba(0, 0, 255, 0.5); 
  }
 
  :root.dark-mode {
@@ -508,6 +525,8 @@ label{
     --text-color: hsl(0, 0%, 98%);
     --search-output-box-shadow: 0px 9px 9px -6px rgba(0, 0, 0, 0.7);
     --hover-text-color: rgb(193, 193, 193);
+    --focus-keyboard: 2px solid rgba(176, 176, 176, 1) ; 
+ 
 }
 
 /* classes for handleing margins of searching bar and output */
@@ -545,20 +564,6 @@ label{
     
 }  
 
-/* classes for handling searchbar screen size > 800px  */
 
-.coutries-wrapper-searchBar-narrow {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        margin: 55px 0px 0px 0px;
-        position: relative;
-        flex-wrap: wrap;
-        
-    
-    
-}
 
 
